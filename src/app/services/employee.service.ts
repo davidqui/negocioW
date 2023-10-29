@@ -1,4 +1,4 @@
-import { Empleado } from './empleado';
+import { Persona } from './persona';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,8 +12,8 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) { }
 
-  getEmployees(): Observable<Empleado[]> {
-    this.http.get<Empleado[]>(this.apiUrl).subscribe(
+  getEmployees(): Observable<Persona[]> {
+    this.http.get<Persona[]>(this.apiUrl).subscribe(
       data => {
         console.log('getEmployees data:', data);
       },
@@ -21,22 +21,23 @@ export class EmployeeService {
         console.log('getEmployees error:', error);
       }
     );
-    return this.http.get<Empleado[]>(this.apiUrl);
+    return this.http.get<Persona[]>(this.apiUrl);
   }
 
-  getEmployeeById(id: number): Observable<Empleado> {
-    return this.http.get<Empleado>(`${this.apiUrl}/${id}`);
+  getEmployeeById(id: number): Observable<Persona> {
+    return this.http.get<Persona>(`${this.apiUrl}/${id}`);
   }
 
-  createEmployee(employee: Empleado): Observable<Empleado> {
-    return this.http.post<Empleado>(this.apiUrl, employee);
+  createEmployee(persona: Persona): Observable<Persona> {
+    return this.http.post<Persona>(this.apiUrl, persona);
   }
 
-  updateEmployee(id: number, employee: Empleado): Observable<Empleado> {
-    return this.http.put<Empleado>(`${this.apiUrl}/${id}`, employee);
+  updateEmployee(id: number, persona: Persona): Observable<Persona> {
+    return this.http.put<Persona>(`${this.apiUrl}/${id}`, persona);
   }
 
   deleteEmployee(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
 }

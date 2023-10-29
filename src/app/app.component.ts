@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, TemplateRef } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'negocioW';
+  @ViewChild('editModal') editModal!: TemplateRef<any>;
+
+  constructor(private modalService: NgbModal) {}
+
+  openModal() {
+    this.modalService.open(this.editModal);
+  }
 }

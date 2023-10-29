@@ -1,6 +1,6 @@
 <p>Pagina de Empleados</p>
 
-<form (ngSubmit)="crearPersona()">
+<form (ngSubmit)="createEmployee()">
   <input [(ngModel)]="nuevaPersona.nombre" name="nombre" placeholder="Nombre">
   <input [(ngModel)]="nuevaPersona.apellido" name="apellido" placeholder="Apellido">
   <button type="submit">Crear</button>
@@ -19,7 +19,7 @@
     <th>Editar</th>
     <th>Eliminar</th>
   </tr>
-  <tr *ngFor="let persona of employee; let i = index">
+  <tr *ngFor="let persona of Persona; let i = index">
     <td>{{ persona?.nombre }}</td>
     <td>{{ persona?.apellido }}</td>
     <td>{{ persona?.fechaNacimiento }}</td>
@@ -29,15 +29,32 @@
     <td>{{ persona?.correo }}</td>
     <td>{{ persona?.salario }}</td>
     <td>
-      <button (click)="editarPersona(i)">Editar</button>
+      <button type="button" class="btn btn-primary" (click)="openModal()">Editar</button>
     </td>
     <td>
-      <button (click)="eliminarPersona(i)">Eliminar</button>
+      <button (click)="deleteEmployee(i)">Eliminar</button>
     </td>
   </tr>
 </table>
 
-<form *ngIf="personaAEditar" (ngSubmit)="guardarCambios()">
-  <input [(ngModel)]="personaAEditar.nombre" name="nombre">
-  <button type="submit">Guardar cambios</button>
-</form>
+<ng-template #editModal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Editar persona</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modalService.dismissAll()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form *ngIf="personaAEditar" (ngSubmit)="guardarCambios()">
+      <input [(ngModel)]="personaAEditar.nombre" name="nombre" placeholder="Nombre">
+      <input [(ngModel)]="personaAEditar.apellido" name="apellido" placeholder="Apellido">
+      <input [(ngModel)]="personaAEditar.fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de nacimiento" type="date">
+      <input [(ngModel)]="personaAEditar.nit" name="nit" placeholder="NIT">
+      <input [(ngModel)]="personaAEditar.edad" name="edad" placeholder="Edad" type="number">
+      <input [(ngModel)]="personaAEditar.fechaContrato" name="fechaContrato" placeholder="Fecha de contrato" type="date">
+      <input [(ngModel)]="personaAEditar.correo" name="correo" placeholder="Correo" type="email">
+      <input [(ngModel)]="personaAEditar.salario" name="salario" placeholder="Salario" type="number">
+      <button type="submit">Guardar cambios</button>
+    </form>
+  </div>
+</ng-template>
