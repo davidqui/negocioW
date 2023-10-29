@@ -1,0 +1,43 @@
+<p>Pagina de Empleados</p>
+
+<form (ngSubmit)="crearPersona()">
+  <input [(ngModel)]="nuevaPersona.nombre" name="nombre" placeholder="Nombre">
+  <input [(ngModel)]="nuevaPersona.apellido" name="apellido" placeholder="Apellido">
+  <button type="submit">Crear</button>
+</form>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Fecha de Nacimiento</th>
+    <th>NIT</th>
+    <th>Edad</th>
+    <th>Fecha de Contrato</th>
+    <th>Correo</th>
+    <th>Salario</th>
+    <th>Editar</th>
+    <th>Eliminar</th>
+  </tr>
+  <tr *ngFor="let persona of employee; let i = index">
+    <td>{{ persona?.nombre }}</td>
+    <td>{{ persona?.apellido }}</td>
+    <td>{{ persona?.fechaNacimiento }}</td>
+    <td>{{ persona?.nit }}</td>
+    <td>{{ persona?.edad }}</td>
+    <td>{{ persona?.fechaContrato }}</td>
+    <td>{{ persona?.correo }}</td>
+    <td>{{ persona?.salario }}</td>
+    <td>
+      <button (click)="editarPersona(i)">Editar</button>
+    </td>
+    <td>
+      <button (click)="eliminarPersona(i)">Eliminar</button>
+    </td>
+  </tr>
+</table>
+
+<form *ngIf="personaAEditar" (ngSubmit)="guardarCambios()">
+  <input [(ngModel)]="personaAEditar.nombre" name="nombre">
+  <button type="submit">Guardar cambios</button>
+</form>
