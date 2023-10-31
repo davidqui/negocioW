@@ -29,9 +29,7 @@
       <td>{{ persona?.correo }}</td>
       <td>{{ persona?.salario }}</td>
       <td>
-        <!-- Cambia esta línea -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal{{ i }}" (click)="openModal(persona, i)">Editar</button>
-
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#editModal' + i" (click)="openModal(persona, i)">Editar</button>
       </td>
       <td>
         <button (click)="deletePersona(i)">Eliminar</button>
