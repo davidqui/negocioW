@@ -91,8 +91,10 @@ export class PersonaComponent implements OnInit {
     }
 
     this.personaAEditar = persona;
+    // Elimina el atributo "attr" para que funcione correctamente
     this.modalService.open('#editModal' + i);
   }
+
 
 
   closeModal() {

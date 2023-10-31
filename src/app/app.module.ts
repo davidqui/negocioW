@@ -7,10 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PersonaComponent } from '../app/components/employee/employee.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
 
 @NgModule({
   declarations: [AppComponent, PersonaComponent],
-  imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, NgbModule],
+  imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, NgbModule, BsDropdownModule.forRoot()],
   providers: [],
   bootstrap: [AppComponent]
 })

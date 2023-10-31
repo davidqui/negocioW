@@ -1,8 +1,7 @@
 import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { PersonaComponent } from '../app/components/employee/employee.component';
-import { Persona } from '../app/services/persona';
-import { EmployeeService } from '../app/services/employee.service';
+import { Persona } from './services/persona';
+import { EmployeeService } from './services/employee.service';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +11,8 @@ import { EmployeeService } from '../app/services/employee.service';
 export class AppComponent {
   title = 'negocioW';
   @ViewChild('editModal') editModal!: TemplateRef<any>;
+
+  personas: Persona[] = [];
 
   personaAEditar: Persona = {
     id: 0,
@@ -25,28 +26,41 @@ export class AppComponent {
     edad: 0
   };
 
-  // Cambia la propiedad modalService a pública
   constructor(public modalService: NgbModal, private employeeService: EmployeeService) {}
 
-  openModal(persona: Persona) {
-    this.personaAEditar = { ...persona }; // Crea una copia de la persona para evitar la edición en tiempo real
-    this.modalService.open(this.editModal);
+  ngOnInit() {
+    this.loadEmployees();
   }
 
-  // Agrega este método público
-  public dismissAll(): void {
-    this.modalService.dismissAll();
+  loadEmployees() {
+    this.employeeService.getEmployees().subscribe(
+      (data) => {
+        this.personas = data;
+      },
+      (error) => {
+        console.error('Error loading employees', error);
+      }
+    );
+  }
+
+  openModal(persona: Persona, i: number) {
+    this.personaAEditar = { ...persona };
+    this.modalService.open(this.editModal, { centered: true });
   }
 
   guardarCambios() {
     this.employeeService.updateEmployee(this.personaAEditar.id, this.personaAEditar).subscribe(
       (updatedPersona) => {
         console.log(updatedPersona);
-        this.dismissAll(); // Llama al nuevo método público aquí
+        this.dismissAll();
       },
       (error) => {
         console.error('Error updating persona', error);
       }
     );
+  }
+
+  dismissAll() {
+    this.modalService.dismissAll();
   }
 }
