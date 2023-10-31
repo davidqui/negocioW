@@ -1,5 +1,3 @@
-import { PersonaComponent } from './components/employee/employee.component';
-
 <router-outlet></router-outlet>
 <app-persona></app-persona>
 
@@ -13,7 +11,18 @@ import { PersonaComponent } from './components/employee/employee.component';
         </button>
       </div>
       <div class="modal-body">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" class="form-control" id="nombre" [(ngModel)]="personaAEditar.nombre" />
         </div>
+        <div class="form-group">
+          <label for="apellido">Apellido:</label>
+          <input type="text" class="form-control" id="apellido" [(ngModel)]="personaAEditar.apellido" />
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-primary" (click)="guardarCambios()">Guardar</button>
+        </div>
+      </div>
     </div>
   </div>
 </ng-template>

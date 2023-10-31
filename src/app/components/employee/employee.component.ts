@@ -1,32 +1,18 @@
-import { Persona } from './../../services/persona';
 import { Component, OnInit, Inject, ViewChild, TemplateRef } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-
+import { Persona } from '../../services/persona';
 
 @Component({
   selector: 'app-persona',
-  templateUrl: './employee.component.html',  // Considera cambiar esto a './persona.component.html'
-  styleUrls: ['./employee.component.scss']  // Considera cambiar esto a './persona.component.scss'
+  templateUrl: './employee.component.html',
+  styleUrls: ['./employee.component.scss']
 })
 export class PersonaComponent implements OnInit {
   @ViewChild('editModal') editModal!: TemplateRef<any>;
   persona: Persona[] = [];
 
-  personaAEditar: Persona = {
-    id: 0,
-    nombre: '',
-    apellido: '',
-    salario: 0,
-    nit: '',
-    correo: '',
-    fechaContrato: new Date(),
-    fechaNacimiento: new Date(),
-    edad: 0
-  };
+  personaAEditar: Persona | null = null;
   nuevaPersona: Persona = {
     id: 0,
     nombre: '',
@@ -39,19 +25,8 @@ export class PersonaComponent implements OnInit {
     edad: 0
   };
 
-  constructor(@Inject(EmployeeService) private personaService: EmployeeService, public modalService: NgbModal) {
-    this.personaAEditar = {
-      id: 0,
-      nombre: '',
-      apellido: '',
-      salario: 0,
-      nit: '',
-      correo: '',
-      fechaContrato: new Date(),
-      fechaNacimiento: new Date(),
-      edad: 0
-    };
-  }
+  // Cambia el alcance de modalService a público
+  constructor(@Inject(EmployeeService) private personaService: EmployeeService, public modalService: NgbModal) {}
 
   ngOnInit(): void {
     this.personaService.getEmployees().subscribe(data => {
@@ -60,9 +35,10 @@ export class PersonaComponent implements OnInit {
   }
 
   guardarCambios() {
-    this.personaService.updateEmployee(this.personaAEditar.id, this.personaAEditar).subscribe({
+    this.personaService.updateEmployee(this.personaAEditar!.id, this.personaAEditar!).subscribe({
       next: response => {
         console.log('Los cambios se han guardado con éxito');
+        this.closeModal();
       },
       error: error => {
         console.log('Ha ocurrido un error al guardar los cambios', error);
@@ -70,7 +46,7 @@ export class PersonaComponent implements OnInit {
     });
   }
 
-  createPersona(event: FormEvent) {
+  createPersona(event: Event) {
     if (event) {
       event.preventDefault();
     }
@@ -97,7 +73,6 @@ export class PersonaComponent implements OnInit {
     });
   }
 
-
   deletePersona(id: number) {
     this.personaService.deleteEmployee(id).subscribe({
       next: response => {
@@ -110,14 +85,15 @@ export class PersonaComponent implements OnInit {
     });
   }
 
-  openModal(persona: Persona) {
+  openModal(persona: Persona, i: number) {
     if (!persona) {
       return;
     }
 
     this.personaAEditar = persona;
-    this.modalService.open(this.editModal);
+    this.modalService.open('#editModal' + i);
   }
+
 
   closeModal() {
     this.modalService.dismissAll();

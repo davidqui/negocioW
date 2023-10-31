@@ -35,7 +35,6 @@ export class EmployeeService {
   updateEmployee(id: number, persona: Persona): Observable<Persona> {
     return this.http.put<Persona>(`${this.apiUrl}/${id}`, persona);
   }
-
   deleteEmployee(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
