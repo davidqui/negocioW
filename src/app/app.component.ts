@@ -2,6 +2,7 @@ import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Persona } from './services/persona';
 import { EmployeeService } from './services/employee.service';
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import { EmployeeService } from './services/employee.service';
 export class AppComponent {
   title = 'negocioW';
   @ViewChild('editModal') editModal!: TemplateRef<any>;
+  private subscription: Subscription | null = null;
 
   personas: Persona[] = [];
 
@@ -29,18 +31,15 @@ export class AppComponent {
   constructor(public modalService: NgbModal, private employeeService: EmployeeService) {}
 
   ngOnInit() {
-    this.loadEmployees();
+    this.getEmployees();
   }
 
   loadEmployees() {
-    this.employeeService.getEmployees().subscribe(
-      (data) => {
-        this.personas = data;
-      },
-      (error) => {
-        console.error('Error loading employees', error);
-      }
-    );
+    this.employeeService.getEmployees().subscribe((data) => {
+      this.personas = data;
+    }, (error) => {
+      console.error('Error loading employees', error);
+    });
   }
 
   openModal(persona: Persona, i: number) {
@@ -58,6 +57,19 @@ export class AppComponent {
         console.error('Error updating persona', error);
       }
     );
+  }
+
+  getEmployees() {
+    this.subscription = this.employeeService.getEmployees().subscribe(
+      data => this.personas = data,
+      error => console.error(error)
+    );
+  }
+
+  ngOnDestroy() {
+    if (this.subscription !== null) {
+      this.subscription.unsubscribe();
+    }
   }
 
   dismissAll() {

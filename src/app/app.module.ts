@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { PersonaComponent } from '../app/components/employee/employee.component';
+import { PersonaComponent } from './components/employee/employee.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 

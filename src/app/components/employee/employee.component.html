@@ -1,12 +1,20 @@
-  <p>Pagina de Empleados</p>
+  <p class="h1">Pagina de Empleados</p>
+
+  <div class="container-sm">
+    <div class="input-group">
 
   <form (ngSubmit)="createPersona($event)">
-    <input [(ngModel)]="nuevaPersona.nombre" name="nombre" placeholder="Nombre" type="text">
-    <input [(ngModel)]="nuevaPersona.apellido" name="apellido" placeholder="Apellido">
-    <button type="submit">Crear</button>
-  </form>
+    <div class="align-">
+      <input [(ngModel)]="nuevaPersona.nombre" name="nombre" placeholder="Nombre" type="text" class="form-control" id="nombre">
 
-  <table>
+    <input [(ngModel)]="nuevaPersona.apellido" name="apellido" placeholder="Apellido" type="text" class="form-control" id="apellido">
+    <button type="submit">Crear</button>
+    </div>
+  </form>
+  </div>
+
+
+  <table class="table-secondary">
     <tr>
       <th>Nombre</th>
       <th>Apellido</th>
@@ -29,15 +37,16 @@
       <td>{{ persona?.correo }}</td>
       <td>{{ persona?.salario }}</td>
       <td>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#editModal' + i" (click)="openModal(persona, i)">Editar</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#editModal' + i" (click)="openModal(persona)">Editar</button>
       </td>
       <td>
         <button (click)="deletePersona(i)">Eliminar</button>
       </td>
     </tr>
   </table>
+  </div>
 
-  <ng-template [id]="'editModal' + i" let-modal>
+  <ng-template #editModal let-modal>
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -48,17 +57,56 @@
         </div>
         <div class="modal-body">
           <form *ngIf="personaAEditar">
-            <input [(ngModel)]="personaAEditar.nombre" name="nombre" placeholder="Nombre">
-            <input [(ngModel)]="personaAEditar.apellido" name="apellido" placeholder="Apellido">
-            <input [(ngModel)]="personaAEditar.fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de nacimiento" type="date">
-            <input [(ngModel)]="personaAEditar.nit" name="nit" placeholder="NIT">
-            <input [(ngModel)]="personaAEditar.edad" name="edad" placeholder="Edad" type="number">
-            <input [(ngModel)]="personaAEditar.fechaContrato" name="fechaContrato" placeholder="Fecha de contrato" type="date">
-            <input [(ngModel)]="personaAEditar.correo" name="correo" placeholder="Correo" type="email">
-            <input [(ngModel)]="personaAEditar.salario" name="salario" placeholder="Salario" type="number">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre:</label>
+              <input [(ngModel)]="personaAEditar.nombre" name="nombre" placeholder="Nombre">
+            </div>
+
+            <div class="mb-3 row">
+              <label for="apellido" class="col-sm-2 col-form-label">Apellidos:</label>
+              <div class="col-sm-10">
+                <input [(ngModel)]="personaAEditar.apellido" name="apellido" placeholder="Apellido">
+              </div>
+            </div>
+
+            <div class="mb-3 row">
+              <label for="fechaNacimiento" class="col-sm-2 col-form-label">Fecha de Nacimiento:</label>
+              <div class="col-sm-10">
+                <input [(ngModel)]="personaAEditar.fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de nacimiento" type="date">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="nit" class="form-label">NIT:</label>
+              <input [(ngModel)]="personaAEditar.nit" name="nit" placeholder="NIT">
+            </div>
+
+            <div class="mb-3">
+              <label for="edad" class="form-label">Edad:</label>
+              <input [(ngModel)]="personaAEditar.edad" name="edad" placeholder="Edad" type="number">
+            </div>
+
+            <div class="mb-3 row">
+              <label for="fechaContrato" class="col-sm-2 col-form-label">Fecha de Contrato:</label>
+              <div class="col-sm-10">
+                <input [(ngModel)]="personaAEditar.fechaContrato" name="fechaContrato" placeholder="Fecha de contrato" type="date">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="correo" class="form-label">Correo:</label>
+              <input [(ngModel)]="personaAEditar.correo" name="correo" placeholder="Correo" type="email">
+            </div>
+
+            <div class="mb-3">
+              <label for="salario" class="form-label">Salario:</label>
+              <input [(ngModel)]="personaAEditar.salario" name="salario" placeholder="Salario" type="number">
+            </div>
+
             <button type="button" (click)="guardarCambios()">Guardar cambios</button>
           </form>
         </div>
       </div>
     </div>
   </ng-template>
+

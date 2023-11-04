@@ -46,32 +46,57 @@ export class PersonaComponent implements OnInit {
     });
   }
 
-  createPersona(event: Event) {
-    if (event) {
-      event.preventDefault();
+  createPersona(event: any) {
+    event.preventDefault();
+
+    const newPersona = {
+      id: this.nuevaPersona.id,
+      nombre: this.nuevaPersona.nombre,
+      apellido: this.nuevaPersona.apellido,
+      salario: this.nuevaPersona.salario,
+      nit: this.nuevaPersona.nit,
+      correo: this.nuevaPersona.correo,
+      fechaContrato: this.nuevaPersona.fechaContrato,
+      fechaNacimiento: this.nuevaPersona.fechaNacimiento,
+      edad: this.nuevaPersona.edad
+    };
+
+    let existingPersona = this.persona.find(persona => persona.id === newPersona.id);
+    if (existingPersona) {
+      // Incrementar el ID
+      newPersona.id = existingPersona.id + 1;
+      existingPersona = this.persona.find(persona => persona.id === newPersona.id);
+      while (existingPersona) {
+        newPersona.id++;
+        existingPersona = this.persona.find(persona => persona.id === newPersona.id);
+      }
     }
 
-    this.personaService.createEmployee(this.nuevaPersona).subscribe({
+
+    this.persona.push(newPersona);
+    this.nuevaPersona = {
+      id: 0,
+      nombre: '',
+      apellido: '',
+      salario: 0,
+      nit: '',
+      correo: '',
+      fechaContrato: new Date(),
+      fechaNacimiento: new Date(),
+      edad: 0
+    };
+
+    this.personaService.createEmployee(newPersona).subscribe({
       next: response => {
         console.log('La persona se ha creado con éxito');
-        this.persona.push(this.nuevaPersona);
-        this.nuevaPersona = {
-          id: 0,
-          nombre: '',
-          apellido: '',
-          salario: 0,
-          nit: '',
-          correo: '',
-          fechaContrato: new Date(),
-          fechaNacimiento: new Date(),
-          edad: 0
-        };
+        // Aquí puedes realizar alguna acción adicional después de guardar la persona en la base de datos, si es necesario.
       },
       error: error => {
         console.log('Ha ocurrido un error al crear la persona', error);
       }
     });
   }
+
 
   deletePersona(id: number) {
     this.personaService.deleteEmployee(id).subscribe({
@@ -85,14 +110,9 @@ export class PersonaComponent implements OnInit {
     });
   }
 
-  openModal(persona: Persona, i: number) {
-    if (!persona) {
-      return;
-    }
-
+  openModal(persona: Persona) {
     this.personaAEditar = persona;
-    // Elimina el atributo "attr" para que funcione correctamente
-    this.modalService.open('#editModal' + i);
+    this.modalService.open(this.editModal);
   }
 
 
