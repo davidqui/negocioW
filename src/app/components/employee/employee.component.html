@@ -1,4 +1,36 @@
-<p class="h1" xmlns:max-width="http://www.w3.org/1999/xhtml" xmlns:max-width="http://www.w3.org/1999/xhtml">Pagina de Empleados</p>
+<div class="card" style="width: 18rem;">
+  <img src="src/app/images/Empleado.png" class="card-img-top" alt="Empleados trabajando">
+  <div class="card-body">
+    <h5 class="card-title">Empleados</h5>
+    <p class="card-text">Pagina de los empleados</p>
+    <a href="#" class="btn btn-primary">vamos!</a>
+  </div>
+</div>
+
+<div id="carouselExampleIndicators" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="src/app/images/Empleado.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="src/app/images/Empleado2.png" class="d-block w-100" alt="...">
+    </div>
+
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
@@ -53,7 +85,10 @@
               <input [(ngModel)]="nuevaPersona.salario" class="form-control border-success text-primary" name="salario" placeholder="Salario" type="number">
             </div>
           </div>
-            <button type="button" class="btn btn-outline-success position-relative" (click)="createPersona()">Crear persona</button>
+            <button type="button" class="btn btn-outline-success position-relative" (click)="createPersona()">
+              <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+              <span role="status">Crear persona...</span>
+            </button>
           </form>
       </div>
     </div>
@@ -155,7 +190,10 @@
             <input [(ngModel)]="personaAEditar.salario" class="form-control border-success text-primary" name="salario" placeholder="Salario" type="number">
           </div>
 
-          <button type="button" class="btn btn-outline-success position-relative" (click)="guardarCambios()">Guardar cambios</button>
+          <button type="button" class="btn btn-outline-success position-relative" (click)="guardarCambios()">
+            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+            <span role="status">Guardar cambios...</span>
+          </button>
         </form>
       </div>
     </div>
