@@ -90,11 +90,12 @@
       <td>{{ persona?.correo }}</td>
       <td>{{ persona?.salario }}</td>
       <td>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#editModal' + i" (click)="openModal(persona)">Editar</button>
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" [attr.data-bs-target]="'#editModal' + i" (click)="openModal(persona)">Editar</button>
       </td>
       <td>
-        <button type="button" class="btn btn-danger" (click)="deletePersona(i)">Eliminar</button>
+        <button type="button" class="btn btn-danger" (click)="deletePersona(persona.id)">Eliminar</button>
       </td>
+
     </tr>
   </table>
 </div>

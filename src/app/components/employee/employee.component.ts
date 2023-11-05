@@ -93,6 +93,7 @@ export class PersonaComponent implements OnInit {
     this.personaService.deleteEmployee(id).subscribe({
       next: response => {
         console.log('La persona se ha eliminado con éxito');
+        // Filtra la persona por su ID y excluye la que corresponde al ID pasado
         this.persona = this.persona.filter(persona => persona.id !== id);
       },
       error: error => {
@@ -100,6 +101,7 @@ export class PersonaComponent implements OnInit {
       }
     });
   }
+
   openCreateModal() {
     // Reiniciar los valores del formulario de nueva persona
     this.nuevaPersona = {
