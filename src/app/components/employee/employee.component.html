@@ -1,69 +1,65 @@
-  <p class="h1">Pagina de Empleados</p>
-  <button type="button" class="btn btn-outline-success position-relative" (click)="openCreateModal()">Crear persona</button>
-  <!-- Código del modal -->
-  <ng-template #createModal let-modal>
-    <div class="modal-dialog modal-xl">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title">Crear persona</h4>
-          <button type="button" class="close" aria-label="Close" (click)="closeModal()">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form *ngIf="nuevaPersona">
-            <div class="mb-3">
-              <label for="nombre" class="form-label">Nombre:</label>
-              <input [(ngModel)]="nuevaPersona.nombre" class="form-control border-success text-primary" name="nombre" placeholder="Nombre">
-            </div>
-
-            <div class="mb-3 row">
-              <label for="apellido" class="col-sm-2 col-form-label">Apellidos:</label>
-              <div class="col-sm-10">
-                <input [(ngModel)]="nuevaPersona.apellido" class="form-control border-success text-primary" name="apellido" placeholder="Apellido">
-              </div>
-            </div>
-
-            <div class="mb-3 row">
-              <label for="fechaNacimiento" class="col-sm-2 col-form-label text-primary">Fecha de Nacimiento:</label>
-              <div class="col-sm-10">
-                <input [(ngModel)]="nuevaPersona.fechaNacimiento" class="form-control border-success text-primary" name="fechaNacimiento" placeholder="Fecha de nacimiento" type="date">
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="nit" class="form-label">NIT:</label>
-              <input [(ngModel)]="nuevaPersona.nit" class="form-control border-success text-primary" name="nit" placeholder="NIT">
-            </div>
-
-            <div class="mb-3">
-              <label for="edad" class="form-label">Edad:</label>
-              <input [(ngModel)]="nuevaPersona.edad" class="form-control border-success text-primary" name="edad" placeholder="Edad" type="number">
-            </div>
-
-            <div class="mb-3 row">
-              <label for="fechaContrato" class="col-sm-2 col-form-label">Fecha de Contrato:</label>
-              <div class="col-sm-10">
-                <input [(ngModel)]="nuevaPersona.fechaContrato" class="form-control border-success text-primary" name="fechaContrato" placeholder="Fecha de contrato" type="date">
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="correo" class="form-label">Correo:</label>
-              <input [(ngModel)]="nuevaPersona.correo" class="form-control border-success text-primary" name="correo" placeholder="Correo" type="email">
-            </div>
-
-            <div class="mb-3">
-              <label for="salario" class="form-label">Salario:</label>
-              <input [(ngModel)]="nuevaPersona.salario" class="form-control border-success text-primary" name="salario" placeholder="Salario" type="number">
-            </div>
-
-            <button type="button" class="btn btn-outline-success position-relative" (click)="createPersona()">Crear persona</button>
-          </form>
-        </div>
+<p class="h1" xmlns:max-width="http://www.w3.org/1999/xhtml" xmlns:max-width="http://www.w3.org/1999/xhtml">Pagina de Empleados</p>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+  <button type="button" class="btn btn-outline-success position-relative" (click)="openCreateModal()">Crear Nueva Persona</button>
       </div>
     </div>
-  </ng-template>
+  </div>
+  <!-- Código del modal -->
+
+<ng-template #createModal let-modal>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Crear persona</h4>
+        <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form *ngIf="nuevaPersona">
+          <div class="row">
+            <div class="mb-3">
+              <label for="nombre" class="form-label fw-bolder">Nombre:</label>
+              <input [(ngModel)]="nuevaPersona.nombre" class="form-control border-success text-primary" name="nombre" placeholder="Nombre">
+            </div>
+            <div class="mb-3">
+              <label for="apellido" class="form-label fw-bolder">Apellidos:</label>
+              <input [(ngModel)]="nuevaPersona.apellido" class="form-control border-success text-primary" name="apellido" placeholder="Apellido">
+            </div>
+            <div class="mb-3">
+              <label for="fechaNacimiento" class="form-label fw-bolder">Fecha de Nacimiento:</label>
+              <input [(ngModel)]="nuevaPersona.fechaNacimiento" class="form-control border-success text-primary" name="fechaNacimiento" placeholder="Fecha de nacimiento" type="date">
+            </div>
+            <div class="mb-3">
+              <label for="nit" class="form-label fw-bolder">NIT:</label>
+              <input [(ngModel)]="nuevaPersona.nit" class="form-control border-success text-primary" name="nit" placeholder="NIT">
+            </div>
+            <div class="mb-3">
+              <label for="edad" class="form-label fw-bolder">Edad:</label>
+              <input [(ngModel)]="nuevaPersona.edad" class="form-control border-success text-primary" name="edad" placeholder="Edad" type="number">
+            </div>
+            <div class="mb-3">
+              <label for="fechaContrato" class="form-label fw-bolder">Fecha de Contrato:</label>
+              <input [(ngModel)]="nuevaPersona.fechaContrato" class="form-control border-success text-primary" name="fechaContrato" placeholder="Fecha de contrato" type="date">
+            </div>
+            <div class="mb-3">
+              <label for="correo" class="form-label fw-bolder">Correo:</label>
+              <input [(ngModel)]="nuevaPersona.correo" class="form-control border-success text-primary" name="correo" placeholder="Correo" type="email">
+            </div>
+            <div class="mb-3">
+              <label for="salario" class="form-label fw-bolder">Salario:</label>
+              <input [(ngModel)]="nuevaPersona.salario" class="form-control border-success text-primary" name="salario" placeholder="Salario" type="number">
+            </div>
+          </div>
+            <button type="button" class="btn btn-outline-success position-relative" (click)="createPersona()">Crear persona</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
 
 
   <div class="container">
@@ -71,6 +67,7 @@
       <div class="col-lg-10">
   <table class="table table-bordered border-porimary ">
     <tr>
+      <th>No.</th>
       <th>Nombre</th>
       <th>Apellido</th>
       <th>Fecha de Nacimiento</th>
@@ -83,6 +80,7 @@
       <th>Eliminar</th>
     </tr>
     <tr *ngFor="let persona of persona; let i = index">
+      <td class="fw-bolder">{{ i + 1}}</td>
       <td>{{ persona?.nombre }}</td>
       <td>{{ persona?.apellido }}</td>
       <td>{{ persona?.fechaNacimiento }}</td>
@@ -103,69 +101,66 @@
 </div>
 </div>
 
-  <ng-template #editModal let-modal>
-    <div class="modal-dialog modal-xl ">
-      <div class="modal-content " >
-        <span class="border border-danger">
-        <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title">Editar persona</h4>
-          <button type="button" class="close" aria-label="Close" (click)="closeModal()">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form *ngIf="personaAEditar">
-            <div class="mb-3">
-              <label for="nombre" class="form-label">Nombre:</label>
-              <input [(ngModel)]="personaAEditar.nombre" class="form-control border-success text-primary" name="nombre" placeholder="Nombre">
-            </div>
+<!-- Código del modal -->
 
-            <div class="mb-3 row">
-              <label for="apellido" class="col-sm-2 col-form-label">Apellidos:</label>
-              <div class="col-sm-10">
-                <input [(ngModel)]="personaAEditar.apellido" class="form-control border-success text-primary" name="apellido" placeholder="Apellido">
-              </div>o
-            </div>
+<ng-template #editModal let-modal>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Editar persona</h4>
+        <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form *ngIf="personaAEditar">
+          <div class="mb-3">
+            <label for="nombre" class="form-label fw-bolder">Nombre:</label>
+            <input [(ngModel)]="personaAEditar.nombre" class="form-control border-success text-primary" name="nombre" placeholder="Nombre">
+          </div>
 
-            <div class="mb-3 row">
-              <label for="fechaNacimiento" class="col-sm-2 col-form-label text-primary">Fecha de Nacimiento:</label>
-              <div class="col-sm-10">
-                <input [(ngModel)]="personaAEditar.fechaNacimiento" class="form-control border-success text-primary" name="fechaNacimiento" placeholder="Fecha de nacimiento" type="date">
-              </div>
-            </div>
+          <div class="mb-3">
+            <label for="apellido" class="form-label fw-bolder">Apellidos:</label>
+            <input [(ngModel)]="personaAEditar.apellido" class="form-control border-success text-primary" name="apellido" placeholder="Apellido">
+          </div>
 
-            <div class="mb-3">
-              <label for="nit" class="form-label">NIT:</label>
-              <input [(ngModel)]="personaAEditar.nit" class="form-control border-success text-primary" name="nit" placeholder="NIT">
-            </div>
+          <div class="mb-3">
+            <label for="fechaNacimiento" class="form-label fw-bolder">Fecha de Nacimiento:</label>
+            <input [(ngModel)]="personaAEditar.fechaNacimiento" class="form-control border-success text-primary" name="fechaNacimiento" placeholder="Fecha de nacimiento" type="date">
+          </div>
 
-            <div class="mb-3">
-              <label for="edad" class="form-label">Edad:</label>
-              <input [(ngModel)]="personaAEditar.edad" class="form-control border-success text-primary" name="edad" placeholder="Edad" type="number">
-            </div>
+          <div class="mb-3">
+            <label for="nit" class="form-label fw-bolder">NIT:</label>
+            <input [(ngModel)]="personaAEditar.nit" class="form-control border-success text-primary" name="nit" placeholder="NIT">
+          </div>
 
-            <div class="mb-3 row">
-              <label for="fechaContrato" class="col-sm-2 col-form-label">Fecha de Contrato:</label>
-              <div class="col-sm-10">
-                <input [(ngModel)]="personaAEditar.fechaContrato" class="form-control border-success text-primary" name="fechaContrato" placeholder="Fecha de contrato" type="date">
-              </div>
-            </div>
+          <div class="mb-3">
+            <label for="edad" class="form-label fw-bolder">Edad:</label>
+            <input [(ngModel)]="personaAEditar.edad" class="form-control border-success text-primary" name="edad" placeholder="Edad" type="number">
+          </div>
 
-            <div class="mb-3">
-              <label for="correo" class="form-label">Correo:</label>
-              <input [(ngModel)]="personaAEditar.correo" class="form-control border-success text-primary" name="correo" placeholder="Correo" type="email">
-            </div>
+          <div class="mb-3">
+            <label for="fechaContrato" class="form-label fw-bolder">Fecha de Contrato:</label>
+            <input [(ngModel)]="personaAEditar.fechaContrato" class="form-control border-success text-primary" name="fechaContrato" placeholder="Fecha de contrato" type="date">
+          </div>
 
-            <div class="mb-3">
-              <label for="salario" class="form-label">Salario:</label>
-              <input [(ngModel)]="personaAEditar.salario" class="form-control border-success text-primary" name="salario" placeholder="Salario" type="number">
-            </div>
+          <div class="mb-3">
+            <label for="correo" class="form-label fw-bolder">Correo:</label>
+            <input [(ngModel)]="personaAEditar.correo" class="form-control border-success text-primary" name="correo" placeholder="Correo" type="email">
+          </div>
 
-            <button type="button" class="btn btn-outline-success position-relative " (click)="guardarCambios()">Guardar cambios</button>
-          </form>
-        </div>
-        </span>
+          <div class="mb-3">
+            <label for="salario" class="form-label fw-bolder">Salario:</label>
+            <input [(ngModel)]="personaAEditar.salario" class="form-control border-success text-primary" name="salario" placeholder="Salario" type="number">
+          </div>
+
+          <button type="button" class="btn btn-outline-success position-relative" (click)="guardarCambios()">Guardar cambios</button>
+        </form>
       </div>
     </div>
-  </ng-template>
+  </div>
+</ng-template>
+
+
+
 
