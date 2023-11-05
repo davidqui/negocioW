@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Persona } from '../../services/persona';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-persona',
@@ -48,11 +49,12 @@ export class PersonaComponent implements OnInit {
   }
 
   createPersona() {
-    const newPersona = this.getPersonaFromForm();
-
     if (!this.validateForm()) {
       return;
     }
+
+    // No necesitas convertir las fechas a cadenas, mantenlas como objetos Date
+    const newPersona = this.getPersonaFromForm();
 
     this.personaService.createEmployee(newPersona).subscribe({
       next: response => {
@@ -76,6 +78,16 @@ export class PersonaComponent implements OnInit {
       }
     });
   }
+
+
+  formatDate(date: Date): string {
+    // Formatear la fecha como 'yyyy-MM-dd'
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
 
   deletePersona(id: number) {
     this.personaService.deleteEmployee(id).subscribe({
