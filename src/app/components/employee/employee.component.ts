@@ -2,6 +2,8 @@ import { Component, OnInit, Inject, ViewChild, TemplateRef } from '@angular/core
 import { EmployeeService } from '../../services/employee.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Persona } from '../../services/persona';
+import { DatePipe } from '@angular/common';
+
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {formatDate} from "@angular/common";
@@ -28,14 +30,32 @@ export class PersonaComponent implements OnInit {
     edad: 0
   };
 
-  constructor(@Inject(EmployeeService) private personaService: EmployeeService, public modalService: NgbModal) {}
+  constructor(@Inject(EmployeeService) private personaService: EmployeeService, public modalService: NgbModal, private datePipe: DatePipe) {}
 
+  /**
+   * Obtiene la lista de personas
+   * @Author: David Quijano
+   * @return void
+   */
   ngOnInit(): void {
     this.personaService.getEmployees().subscribe(data => {
       this.persona = data;
     });
+    // Llamar a calculateAge para la nueva persona (creación)
+    this.calculateAge(this.nuevaPersona.fechaNacimiento.toISOString(), 'nuevaPersona');
+
+    // Llamar a calculateAge para la persona a editar (edición)
+    if (this.personaAEditar) {
+      this.calculateAge(this.personaAEditar.fechaNacimiento.toISOString(), 'personaAEditar');
+    }
   }
 
+  /**
+   * Actualiza una persona de la lista de personas y cierra el modal  de edición de personas
+   * @Author: David Quijano
+   * @return void
+   * @param {Persona} persona
+   */
   guardarCambios() {
     this.personaService.updateEmployee(this.personaAEditar!.id, this.personaAEditar!).subscribe({
       next: response => {
@@ -48,6 +68,11 @@ export class PersonaComponent implements OnInit {
     });
   }
 
+  /**
+   * Crea una nueva persona y la agrega a la lista de personas
+   * @Author: David Quijano
+   * @returns void
+   */
   createPersona() {
     if (!this.validateForm()) {
       return;
@@ -79,7 +104,42 @@ export class PersonaComponent implements OnInit {
     });
   }
 
+  /**
+   * Calcula la edad de la persona y la asigna a la propiedad 'edad' de la persona
+   * @Author: David Quijano
+   * @returns void
+   */
+  calculateAge(birthDate: Date | string, target: 'nuevaPersona' | 'personaAEditar'): void {
+    // Asegurarse de que birthDate sea una cadena
+    const birthDateStr = typeof birthDate === 'string' ? birthDate : (birthDate as Date).toISOString();
+    const birthDateObj = new Date(birthDateStr);
+    const today = new Date();
+    const age = today.getFullYear() - birthDateObj.getFullYear();
+    const monthDiff = today.getMonth() - birthDateObj.getMonth();
 
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDateObj.getDate())) {
+      if (target === 'nuevaPersona') {
+        this.nuevaPersona.edad = age - 1;
+      } else if (target === 'personaAEditar') {
+        this.personaAEditar!.edad = age - 1;
+      }
+    } else {
+      if (target === 'nuevaPersona') {
+        this.nuevaPersona.edad = age;
+      } else if (target === 'personaAEditar') {
+        this.personaAEditar!.edad = age;
+      }
+    }
+  }
+
+
+
+
+  /**
+   * Formatea la fecha en formato 'yyyy-MM-dd'
+   * @Author: David Quijano
+   * @param date
+   */
   formatDate(date: Date): string {
     // Formatear la fecha como 'yyyy-MM-dd'
     const year = date.getFullYear();
@@ -88,7 +148,11 @@ export class PersonaComponent implements OnInit {
     return `${year}-${month}-${day}`;
   }
 
-
+  /**
+   * Elimina una persona de la lista
+   * @Author: David Quijano
+   * @param id
+   */
   deletePersona(id: number) {
     this.personaService.deleteEmployee(id).subscribe({
       next: response => {
@@ -102,6 +166,10 @@ export class PersonaComponent implements OnInit {
     });
   }
 
+  /**
+   * Abre el modal de creación de personas
+   * @Author: David Quijano
+   */
   openCreateModal() {
     // Reiniciar los valores del formulario de nueva persona
     this.nuevaPersona = {
@@ -143,11 +211,20 @@ export class PersonaComponent implements OnInit {
     });
   }
 
+  /**
+   * Abre el modal de edición de personas
+   * @Author: David Quijano
+   * @param persona
+   */
   openModal(persona: Persona) {
     this.personaAEditar = persona;
     this.modalService.open(this.editModal);
   }
 
+  /**
+   * Cierra el modal
+   * @Author: David Quijano
+   */
   closeModal() {
     this.modalService.dismissAll();
   }
@@ -157,6 +234,10 @@ export class PersonaComponent implements OnInit {
     return true;
   }
 
+  /**
+   * Obtiene la persona del formulario de creación de personas
+   * @Author: David Quijano
+   */
   getPersonaFromForm() {
     const newPersona: Persona = {
       id: this.nuevaPersona.id,

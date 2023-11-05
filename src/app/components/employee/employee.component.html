@@ -1,3 +1,4 @@
+
 <div class="card" style="width: 18rem;">
   <img src="src/app/images/Empleado.png" class="card-img-top" alt="Empleados trabajando">
   <div class="card-body">
@@ -62,7 +63,7 @@
             </div>
             <div class="mb-3">
               <label for="fechaNacimiento" class="form-label fw-bolder">Fecha de Nacimiento:</label>
-              <input [(ngModel)]="nuevaPersona.fechaNacimiento" class="form-control border-success text-primary" name="fechaNacimiento" placeholder="Fecha de nacimiento" type="date">
+              <input [(ngModel)]="nuevaPersona.fechaNacimiento" class="form-control border-success text-primary" name="fechaNacimiento" placeholder="Fecha de nacimiento" type="date" (change)="calculateAge(nuevaPersona.fechaNacimiento, 'nuevaPersona')">
             </div>
             <div class="mb-3">
               <label for="nit" class="form-label fw-bolder">NIT:</label>
@@ -98,9 +99,9 @@
 
 
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-  <table class="table table-bordered border-porimary ">
+    <div class="row justify-content-center ">
+      <div class="table-responsive">
+  <table class="table table-hover table-bordered border-primary">
     <tr>
       <th>No.</th>
       <th>Nombre</th>
@@ -118,10 +119,10 @@
       <td class="fw-bolder">{{ i + 1}}</td>
       <td>{{ persona?.nombre }}</td>
       <td>{{ persona?.apellido }}</td>
-      <td>{{ persona?.fechaNacimiento }}</td>
+      <td>{{ persona?.fechaNacimiento | date:'dd MMMM yyyy' }}</td>
       <td>{{ persona?.nit }}</td>
       <td>{{ persona?.edad }}</td>
-      <td>{{ persona?.fechaContrato }}</td>
+      <td>{{ persona?.fechaContrato | date:'dd MMMM yyyy' }}</td>
       <td>{{ persona?.correo }}</td>
       <td>{{ persona?.salario }}</td>
       <td>
@@ -162,7 +163,7 @@
 
           <div class="mb-3">
             <label for="fechaNacimiento" class="form-label fw-bolder">Fecha de Nacimiento:</label>
-            <input [(ngModel)]="personaAEditar.fechaNacimiento" class="form-control border-success text-primary" name="fechaNacimiento" placeholder="Fecha de nacimiento" type="date">
+            <input [(ngModel)]="personaAEditar.fechaNacimiento" class="form-control border-success text-primary" name="fechaNacimiento" placeholder="Fecha de nacimiento" type="date" (change)="calculateAge(personaAEditar.fechaNacimiento, 'personaAEditar')">
           </div>
 
           <div class="mb-3">
