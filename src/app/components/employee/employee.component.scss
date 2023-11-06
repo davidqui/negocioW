@@ -1,6 +1,15 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
 /* Ajustar el ancho del modal */
 .modal-dialog {
   width: 95%;
   max-width: 95%;
 }
+
+/* styles.css o tu archivo de estilos */
+.table-header-cell {
+  background-color: brown; /* Cambia 'tu-color' al color que desees */
+  color: blue; /* Cambia 'tu-color-de-texto' al color de texto deseado */
+}
+
+
