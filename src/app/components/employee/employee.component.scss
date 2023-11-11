@@ -11,5 +11,16 @@
   background-color: brown; /* Cambia 'tu-color' al color que desees */
   color: blue; /* Cambia 'tu-color-de-texto' al color de texto deseado */
 }
+.custom-button {
+  background-color: yellow;
+  color: black;
+  transition: background-color 0.3s;
+}
+
+.custom-button:hover {
+  background-color: orange; /* Cambia el color al pasar el cursor */
+  color: black;
+}
+
 
 

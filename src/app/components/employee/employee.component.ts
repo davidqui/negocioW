@@ -48,13 +48,14 @@ export class PersonaComponent implements OnInit {
     if (this.personaAEditar) {
       this.calculateAge(this.personaAEditar.fechaNacimiento.toISOString(), 'personaAEditar');
     }
+
   }
 
   /**
    * Actualiza una persona de la lista de personas y cierra el modal  de edición de personas
    * @Author: David Quijano
    * @return void
-   * @param {Persona} persona
+   * @param {Persona} persona persona a editar y actualizar en la lista de personas (this.persona)
    */
   guardarCambios() {
     this.personaService.updateEmployee(this.personaAEditar!.id, this.personaAEditar!).subscribe({
@@ -235,7 +236,7 @@ export class PersonaComponent implements OnInit {
   }
 
   /**
-   * Obtiene la persona del formulario de creación de personas
+   * Obtiene la persona del formulario de creación de personas y la dedocker start mi-oracle-dbvuelve
    * @Author: David Quijano
    */
   getPersonaFromForm() {

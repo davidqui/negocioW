@@ -9,12 +9,19 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PersonaComponent } from './components/employee/employee.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { DatePipe } from '@angular/common';
-
-
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [AppComponent, PersonaComponent],
-  imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, NgbModule, BsDropdownModule.forRoot()],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    AppRoutingModule,
+    NgbModule,
+    BsDropdownModule.forRoot(),
+    AlertModule.forRoot()
+  ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
 })
