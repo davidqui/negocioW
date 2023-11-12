@@ -16,7 +16,7 @@ import {formatDate} from "@angular/common";
 export class PersonaComponent implements OnInit {
   @ViewChild('createModal') createModal!: TemplateRef<any>;
   @ViewChild('editModal') editModal!: TemplateRef<any>;
-  persona: Persona[] = [];
+  personas: Persona[] = [];
   personaAEditar: Persona | null = null;
   nuevaPersona: Persona = {
     id: 0,
@@ -39,7 +39,7 @@ export class PersonaComponent implements OnInit {
    */
   ngOnInit(): void {
     this.personaService.getEmployees().subscribe(data => {
-      this.persona = data;
+      this.personas = data;
     });
     // Llamar a calculateAge para la nueva persona (creación)
     this.calculateAge(this.nuevaPersona.fechaNacimiento.toISOString(), 'nuevaPersona');
@@ -84,7 +84,7 @@ export class PersonaComponent implements OnInit {
     this.personaService.createEmployee(newPersona).subscribe({
       next: response => {
         console.log('La persona se ha creado con éxito');
-        this.persona.push(newPersona);
+        this.personas.push(newPersona);
         this.nuevaPersona = {
           id: 0,
           nombre: '',
@@ -132,9 +132,6 @@ export class PersonaComponent implements OnInit {
     }
   }
 
-
-
-
   /**
    * Formatea la fecha en formato 'yyyy-MM-dd'
    * @Author: David Quijano
@@ -158,7 +155,7 @@ export class PersonaComponent implements OnInit {
       next: response => {
         console.log('La persona se ha eliminado con éxito');
         // Filtra la persona por su ID y excluye la que corresponde al ID pasado
-        this.persona = this.persona.filter(persona => persona.id !== id);
+        this.personas = this.personas.filter(persona => persona.id !== id);
       },
       error: error => {
         console.log('Ha ocurrido un error al eliminar la persona', error);
@@ -198,7 +195,7 @@ export class PersonaComponent implements OnInit {
         this.personaService.createEmployee(newPersona).subscribe({
           next: response => {
             console.log('La persona se ha creado con éxito');
-            this.persona.push(newPersona);
+            this.personas.push(newPersona);
           },
           error: error => {
             console.log('Ha ocurrido un error al crear la persona', error);

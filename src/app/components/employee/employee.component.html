@@ -1,13 +1,13 @@
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.17.0/font/bootstrap-icons.css" rel="stylesheet">
+  <title>Tu Página</title>
+</head>
 
-<div class="card" style="width: 18rem;">
-  <img src="assets/images/Empleado.png" class="card-img-top" alt="Empleados trabajando">
-  <div class="card-body">
-    <h5 class="card-title">Empleados</h5>
-    <p class="card-text">Pagina de los empleados</p>
-    <a href="#" class="btn btn-primary">vamos!</a>
-  </div>
-</div>
+
 <!--!- Imagenes del carrusel -->
 <div id="carouselExampleIndicators" class="carousel slide mx-auto" data-bs-ride="carousel" style="max-width: 60%;">
   <ol class="carousel-indicators">
@@ -76,44 +76,45 @@
   <div class="modal-dialog ">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Crear persona</h4>
+        <h4 class="modal-title" id="modal-dialog">Crear persona</h4>
         <button type="button" class="close" aria-label="Close" (click)="closeModal()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+
         <form *ngIf="nuevaPersona">
           <div class="row">
             <div class="mb-3">
-              <label for="nombre" class="form-label fw-bolder">Nombre:</label>
+              <label for="nomb" class="form-label fw-bolder">Nombre:</label>
               <input [(ngModel)]="nuevaPersona.nombre" class="form-control border-success text-primary" name="nombre" placeholder="Nombre">
             </div>
             <div class="mb-3">
-              <label for="apellido" class="form-label fw-bolder">Apellidos:</label>
+              <label for="apell" class="form-label fw-bolder">Apellidos:</label>
               <input [(ngModel)]="nuevaPersona.apellido" class="form-control border-success text-primary" name="apellido" placeholder="Apellido">
             </div>
             <div class="mb-3">
-              <label for="fechaNacimiento" class="form-label fw-bolder">Fecha de Nacimiento:</label>
+              <label for="fechaNac" class="form-label fw-bolder">Fecha de Nacimiento:</label>
               <input [(ngModel)]="nuevaPersona.fechaNacimiento" class="form-control border-success text-primary" name="fechaNacimiento" placeholder="Fecha de nacimiento" type="date" (change)="calculateAge(nuevaPersona.fechaNacimiento, 'nuevaPersona')">
             </div>
             <div class="mb-3">
-              <label for="nit" class="form-label fw-bolder">NIT:</label>
+              <label for="nt" class="form-label fw-bolder">NIT:</label>
               <input [(ngModel)]="nuevaPersona.nit" class="form-control border-success text-primary" name="nit" placeholder="NIT">
             </div>
             <div class="mb-3">
-              <label for="edad" class="form-label fw-bolder">Edad:</label>
+              <label for="ed" class="form-label fw-bolder">Edad:</label>
               <input [(ngModel)]="nuevaPersona.edad" class="form-control border-success text-primary" name="edad" placeholder="Edad" type="number">
             </div>
             <div class="mb-3">
-              <label for="fechaContrato" class="form-label fw-bolder">Fecha de Contrato:</label>
+              <label for="fechaCont" class="form-label fw-bolder">Fecha de Contrato:</label>
               <input [(ngModel)]="nuevaPersona.fechaContrato" class="form-control border-success text-primary" name="fechaContrato" placeholder="Fecha de contrato" type="date">
             </div>
             <div class="mb-3">
-              <label for="correo" class="form-label fw-bolder">Correo:</label>
+              <label for="corr" class="form-label fw-bolder">Correo:</label>
               <input [(ngModel)]="nuevaPersona.correo" class="form-control border-success text-primary" name="correo" placeholder="Correo" type="email">
             </div>
             <div class="mb-3">
-              <label for="salario" class="form-label fw-bolder">Salario:</label>
+              <label for="sal" class="form-label fw-bolder">Salario:</label>
               <input [(ngModel)]="nuevaPersona.salario" class="form-control border-success text-primary" name="salario" placeholder="Salario" type="number">
             </div>
           </div>
@@ -127,26 +128,29 @@
   </div>
 </ng-template>
 
+<!-- Codigo de la tabla -->
   <div class="container">
     <div class="row justify-content-center ">
       <div class="table-responsive">
         <div class="border border-primary">
   <table class="table table-hover table-bordered border-primary">
     <tr>
-      <th class="bg-primary text-white">No.</th>
-      <th class="bg-primary text-white">Nombre</th>
-      <th class="bg-primary text-white">Apellido</th>
-      <th class="bg-primary text-white">Fecha de Nacimiento</th>
-      <th class="bg-primary text-white">NIT</th>
-      <th class="bg-primary text-white">Edad</th>
-      <th class="bg-primary text-white">Fecha de Contrato</th>
-      <th class="bg-primary text-white">Correo</th>
-      <th class="bg-primary text-white">Salario</th>
-      <th class="bg-primary text-white">Editar</th>
-      <th class="bg-primary text-white">Eliminar</th>
+      <th class="bg-primary text-white"><i class="bi bi-list-ol"></i><br>No.</th>
+      <th class="bg-primary text-white"><i class="bi bi-person-circle"></i><br>Nombre</th>
+      <th class="bg-primary text-white"><i class="bi bi-person-fill-add"></i><br>Apellido</th>
+      <th class="bg-primary text-white"><i class="bi bi-calendar3"></i><br>Fecha de Nacimiento</th>
+      <th class="bg-primary text-white"><i class="bi bi-incognito"></i><br>NIT</th>
+      <th class="bg-primary text-white"><i class="bi bi-calendar-heart"></i><br>Edad</th>
+      <th class="bg-primary text-white"><i class="bi bi-calendar3"></i><br>Fecha de Contrato</th>
+      <th class="bg-primary text-white"><i class="bi bi-envelope-at-fill"></i><br>Correo</th>
+      <th class="bg-primary text-white"><i class="bi bi-cash-coin"></i><br>Salario</th>
+      <th class="bg-primary text-white"><i class="bi bi-pencil-fill"></i><br>Editar</th>
+      <th class="bg-primary text-white"><i class="bi bi-trash-fill"></i><br>Eliminar</th>
     </tr>
-    <tr *ngFor="let persona of persona; let i = index">
-      <td class="fw-bolder">{{ i + 1}}</td>
+    <tbody>
+    <tr *ngFor="let persona of personas; let i = index">
+      <!--<td class="fw-bolder">{{ i + 1 }}</td> -->
+      <td class="fw-bolder"><i class="bi bi-{{i + 1}}-circle-fill"></i></td>
       <td>{{ persona?.nombre }}</td>
       <td>{{ persona?.apellido }}</td>
       <td>{{ persona?.fechaNacimiento | date:'dd MMMM yyyy' }}</td>
@@ -156,17 +160,18 @@
       <td>{{ persona?.correo }}</td>
       <td>{{ persona?.salario }}</td>
       <td>
-        <button type="button" class="btn btn-warning" data-bs-toggle="modal" [attr.data-bs-target]="'#editModal' + i" (click)="openModal(persona)">Editar</button>
+        <button type="button" class="btn btn-warning position-relative" data-bs-toggle="modal" [attr.data-bs-target]="'#editModal' + i" (click)="openModal(persona)">Editar</button>
       </td>
       <td>
-        <button type="button" class="btn btn-danger" (click)="deletePersona(persona.id)">Eliminar</button>
+        <button type="button" class="btn btn-danger position-relative" (click)="deletePersona(persona.id)">Eliminar</button>
       </td>
-
     </tr>
+    </tbody>
   </table>
 </div>
 </div>
 </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </div>
 
 <!-- Código del modal -->
@@ -183,42 +188,42 @@
       <div class="modal-body">
         <form *ngIf="personaAEditar">
           <div class="mb-3">
-            <label for="nombre" class="form-label fw-bolder">Nombre:</label>
+            <label for="nb" class="form-label fw-bolder">Nombre:</label>
             <input [(ngModel)]="personaAEditar.nombre" class="form-control border-success text-primary" name="nombre" placeholder="Nombre">
           </div>
 
           <div class="mb-3">
-            <label for="apellido" class="form-label fw-bolder">Apellidos:</label>
+            <label for="ap" class="form-label fw-bolder">Apellidos:</label>
             <input [(ngModel)]="personaAEditar.apellido" class="form-control border-success text-primary" name="apellido" placeholder="Apellido">
           </div>
 
           <div class="mb-3">
-            <label for="fechaNacimiento" class="form-label fw-bolder">Fecha de Nacimiento:</label>
+            <label for="fch" class="form-label fw-bolder">Fecha de Nacimiento:</label>
             <input [(ngModel)]="personaAEditar.fechaNacimiento" class="form-control border-success text-primary" name="fechaNacimiento" placeholder="Fecha de nacimiento" type="date" (change)="calculateAge(personaAEditar.fechaNacimiento, 'personaAEditar')">
           </div>
 
           <div class="mb-3">
-            <label for="nit" class="form-label fw-bolder">NIT:</label>
+            <label for="nit-1" class="form-label fw-bolder">NIT:</label>
             <input [(ngModel)]="personaAEditar.nit" class="form-control border-success text-primary" name="nit" placeholder="NIT">
           </div>
 
           <div class="mb-3">
-            <label for="edad" class="form-label fw-bolder">Edad:</label>
+            <label for="ed-1" class="form-label fw-bolder">Edad:</label>
             <input [(ngModel)]="personaAEditar.edad" class="form-control border-success text-primary" name="edad" placeholder="Edad" type="number">
           </div>
 
           <div class="mb-3">
-            <label for="fechaContrato" class="form-label fw-bolder">Fecha de Contrato:</label>
+            <label for="fech-cont" class="form-label fw-bolder">Fecha de Contrato:</label>
             <input [(ngModel)]="personaAEditar.fechaContrato" class="form-control border-success text-primary" name="fechaContrato" placeholder="Fecha de contrato" type="date">
           </div>
 
           <div class="mb-3">
-            <label for="correo" class="form-label fw-bolder">Correo:</label>
+            <label for="correo-1" class="form-label fw-bolder">Correo:</label>
             <input [(ngModel)]="personaAEditar.correo" class="form-control border-success text-primary" name="correo" placeholder="Correo" type="email">
           </div>
 
           <div class="mb-3">
-            <label for="salario" class="form-label fw-bolder">Salario:</label>
+            <label for="salario-1" class="form-label fw-bolder">Salario:</label>
             <input [(ngModel)]="personaAEditar.salario" class="form-control border-success text-primary" name="salario" placeholder="Salario" type="number">
           </div>
 
