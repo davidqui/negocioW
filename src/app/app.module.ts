@@ -10,9 +10,11 @@ import { PersonaComponent } from './components/employee/employee.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { DatePipe } from '@angular/common';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { ProviderComponent } from './components/provider/provider.component';
+import { ClientComponent } from './components/client/client.component';
 
 @NgModule({
-  declarations: [AppComponent, PersonaComponent],
+  declarations: [AppComponent, PersonaComponent, ProviderComponent, ClientComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
