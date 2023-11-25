@@ -18,15 +18,18 @@ export class AppComponent {
 
   personaAEditar: Persona = {
     id: 0,
-    nombre: '',
-    apellido: '',
-    salario: 0,
-    nit: '',
-    correo: '',
+    nombre: 'Nombre',
+    apellido: 'Apellido',
+    salario: 0,  // Agrega valores adecuados
+    nit: '123456',
+    correo: 'correo@example.com',
     fechaContrato: new Date(),
     fechaNacimiento: new Date(),
-    edad: 0
+    edad: 0,
+    categoria: 'Categoria',  // Agrega valores adecuados
+    cargo: 'Cargo'  // Agrega valores adecuados
   };
+
 
   constructor(public modalService: NgbModal, private employeeService: EmployeeService) {}
 

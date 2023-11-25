@@ -28,7 +28,9 @@ export class PersonaComponent implements OnInit {
     correo: '',
     fechaContrato: new Date(),
     fechaNacimiento: new Date(),
-    edad: 0
+    edad: 0,
+    categoria: '',  // Agrega valores adecuados
+    cargo: ''
   };
 
   constructor(@Inject(EmployeeService) private personaService: EmployeeService, public modalService: NgbModal, private datePipe: DatePipe) {}
@@ -96,7 +98,9 @@ export class PersonaComponent implements OnInit {
           correo: '',
           fechaContrato: new Date(),
           fechaNacimiento: new Date(),
-          edad: 0
+          edad: 0,
+          categoria: '',  // Agrega valores adecuados
+          cargo: ''
         };
         this.modalService.dismissAll();
       },
@@ -180,7 +184,9 @@ export class PersonaComponent implements OnInit {
       correo: '',
       fechaContrato: new Date(),
       fechaNacimiento: new Date(),
-      edad: 0
+      edad: 0,
+      categoria: '',  // Agrega valores adecuados
+      cargo: ''
     };
 
     // Abrir el modal de creación
@@ -247,7 +253,9 @@ export class PersonaComponent implements OnInit {
       correo: this.nuevaPersona.correo,
       fechaContrato: this.nuevaPersona.fechaContrato,
       fechaNacimiento: this.nuevaPersona.fechaNacimiento,
-      edad: this.nuevaPersona.edad
+      edad: this.nuevaPersona.edad,
+      categoria: this.nuevaPersona.categoria,
+      cargo: this.nuevaPersona.cargo
     };
 
     return newPersona;

@@ -99,7 +99,9 @@ export class ClientComponent implements OnInit {
         edad: 0, // Agrega la edad que corresponda
         fechaContrato: new Date(), // Agrega la fecha de contrato que corresponda
         correo: '', // Agrega el correo que corresponda
-        salario: 0 // Agrega el salario que corresponda
+        salario: 0, // Agrega el salario que corresponda
+        categoria: '', // Agrega la categoria que corresponda
+        cargo: '' // Agrega el cargo que corresponda
       }
     };
   }

@@ -8,4 +8,6 @@ export interface Persona {
   fechaContrato: Date;
   correo: string;
   salario: number;
+  categoria: string;
+  cargo: string;
 }
